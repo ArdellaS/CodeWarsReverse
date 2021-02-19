@@ -1,0 +1,42 @@
+
+using System;
+
+namespace codeWars
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var answer = SpinWords("Hey fellow warriors");
+
+            if (answer.Equals("Hey wollef sroirraw"))
+            {
+                Console.WriteLine("true");
+            }
+
+            Console.WriteLine("Hey wollef sroirraw");
+            Console.WriteLine(answer);
+        }
+        public static string SpinWords(string sentence)
+        {
+            var newString = string.Empty;
+            string[] words = sentence.Split(' ');
+            ;
+            foreach (var word in words)
+            {
+                if (word.Length >= 5)
+                {
+                    char[] charArray = word.ToCharArray();
+                    Array.Reverse(charArray);
+                    newString += new string(charArray) + ' ';
+                }
+                else
+                {
+                    newString += word + ' ';
+                }
+            }
+            
+            return newString.Trim();
+        }
+    }
+}
