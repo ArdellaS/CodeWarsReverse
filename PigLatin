@@ -1,0 +1,71 @@
+using System;
+using System.Linq;
+using System.Runtime.CompilerServices;
+
+namespace codeWars
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            do
+            {
+                Console.WriteLine("Enter a string to see it in pig latin: ");
+                var str = Console.ReadLine();
+
+                Console.WriteLine(PigIt(str));
+
+            } while (Contniue());
+            
+        }
+
+        public static bool Contniue()
+        {
+            char c;
+
+            do
+            {
+                Console.WriteLine("Would you like to continue? y/n");
+                c = Console.ReadKey().KeyChar;
+                if (c == 'n' || c == 'N')
+                {
+                    return false;
+                }
+            } while (c != 'y' && c != 'Y');
+
+            return true;
+        }
+        public static string PigIt(string str)
+        {
+            string[] words = str.Split(' ');
+            var answer = string.Empty;
+
+            foreach (var word in words)
+            {
+                var consonants = "BCDFGHJKLMNPQRSTVWXYZ";
+                var vowels = "AEIOU";
+                var firstLetter = word.Substring(0, 1);
+                var otherLetters = word.Substring(1, word.Length - 1);
+                
+                if (word.Contains("!.?,"))
+                {
+                    answer += word.Substring(word.Length, word.Length - 1);
+                }
+
+                if (consonants.Contains(firstLetter.ToUpper()))
+                {
+                    answer += otherLetters + firstLetter + "ay ";
+                }
+                else if (vowels.Contains(firstLetter.ToUpper()))
+                {
+                    answer += otherLetters + firstLetter + "way ";
+                }
+                
+                
+            }
+
+            return answer.TrimEnd();
+        }
+    }
+
+}
